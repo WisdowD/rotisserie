@@ -17,13 +17,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname)));
 
-app.get('/service-worker.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'service-worker.js'));
-});
-
-app.get('/manifest.json', (req, res) => {
-    res.sendFile(path.join(__dirname, 'manifest.json'));
-});
 
 app.use(bodyParser.json());
 
@@ -31,6 +24,7 @@ app.use(bodyParser.json());
 app.use("/api", usuarioRoutes);
 
 export default app;
+
 
 
 
