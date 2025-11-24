@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta - Rotisserie Israel</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu lateral">☰</button>
+
+  <div class="profile-container">
+    <nav class="profile-sidebar" id="profile-sidebar">
+      <button class="sidebar-button" style="color:white;" onclick="showSection('dados')">🧍 Dados Pessoais</button>
+      <button class="sidebar-button" style="color:white;" onclick="showSection('pedidos')">📦 Pedidos</button>
+      <button class="sidebar-button" style="color:white;" onclick=" logout()">🚪 Sair</button>
+      <button class="sidebar-button back-button" style="color:#497157;background-color:white; border-radius: 8%;"
+        onclick="window.location.href='index.html'">← Voltar à loja</button>
+    </nav>
+    <main class="profile-content">
+      <section id="dados" class="profile-section active">
+        <h2>Dados Pessoais</h2>
+        <img id="foto-perfil" class="avatar-preview" src="" alt="Avatar">
+        <form id="form-dados" class="profile-form">
+          <input type="text" id="nome" placeholder="Nome">
+          <input type="text" id="telefone" placeholder="Telefone"></input>
+          <button type="submit">Salvar</button>
+        </form>
+      </section>
+
+      <section id="pedidos" class="profile-section">
+        <h2>📦 Meus Pedidos</h2>
+        <div id="lista-pedidos" class="orders-container">
+          <p>Carregando seus pedidos...</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      const sidebar = document.getElementById('profile-sidebar');
+      sidebar.classList.toggle('open');
+    });
+
+
+    document.querySelectorAll('.sidebar-button').forEach(button => {
+      button.addEventListener('click', function () {
+        if (window.innerWidth <= 768) {
+          document.getElementById('profile-sidebar').classList.remove('open');
+        }
+      });
+    });
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (!usuario) {
+      alert("Você precisa estar logado.");
+      window.location.href = "login.html";
+    }
+
+    const avatarUrls = [];
+
+    document.getElementById("foto-perfil").src = usuario.avatar || usuario.foto;
+    document.getElementById("nome").value = usuario.nome || "";
+    document.getElementById("telefone").value = usuario.telefone || "(11) 99999-9999";
+
+    document.getElementById("form-dados").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const atual = {
+        email: usuario.email,
+        nome: document.getElementById("nome").value,
+        telefone: document.getElementById("telefone").value,
+        foto: usuario.avatar || usuario.foto
+      };
+
+      usuario.nome = document.getElementById("nome").value;
+      usuario.telefone = document.getElementById("telefone").value;
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      fetch("/api/usuario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(atual)
+      }).then(() => {
+        alert("Perfil salvo!");
+      }).catch(() => alert("Erro ao salvar no backend"));
+    });
+
+    const userEmail = usuario.email;
+    const listaPedidosDiv = document.getElementById("lista-pedidos");
+
+    function renderPedidos(pedidos) {
+      if (!pedidos || pedidos.length === 0) {
+        listaPedidosDiv.innerHTML = "<p>Você ainda não fez nenhum pedido.</p>";
+        return;
+      }
+
+      listaPedidosDiv.innerHTML = pedidos.map(pedido => {
+        const itensList = pedido.itens.map(item =>
+          `<li>${item.qtd ?? 1}x ${item.nome} (R$ ${item.preco.toFixed(2)})</li>`
+        ).join('');
+
+        const totalFormatado = (pedido.total ?? 0).toFixed(2);
+
+        return `
+          <div class="order-card">
+            <h3>Pedido #${pedido.id.split('-')[1]}</h3>
+            <p><strong>Data:</strong> ${pedido.data}</p>
+            <p><strong>Total:</strong> R$ ${totalFormatado}</p>
+            <details>
+              <summary>Detalhes do Pedido</summary>
+              <ul>${itensList}</ul>
+            </details>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function fetchPedidos() {
+      // Apenas faz a requisição se a seção 'pedidos' estiver ativa
+      if (!document.getElementById('pedidos').classList.contains('active')) {
+        return;
+      }
+      listaPedidosDiv.innerHTML = "<p>Carregando seus pedidos...</p>"; // Exibe status de carregamento
+
+      fetch(`/api/usuario/pedidos/${userEmail}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.pedidos) {
+            renderPedidos(data.pedidos);
+          } else {
+            listaPedidosDiv.innerHTML = "<p>Erro ao carregar pedidos.</p>";
+          }
+        })
+        .catch(error => {
+          console.error("Erro ao buscar pedidos:", error);
+          listaPedidosDiv.innerHTML = "<p>Erro de comunicação ao buscar pedidos.</p>";
+        });
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('.profile-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      if (id === 'pedidos') {
+        fetchPedidos();
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "login.html";
+    }
+
+    const avatarGrid = document.getElementById("avatarGrid");
+    avatarUrls.forEach(url => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.classList.add("avatar-option");
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        usuario.avatar = url;
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+        document.getElementById("foto-perfil").src = url;
+        alert("Avatar atualizado!");
+      });
+      avatarGrid.appendChild(img);
+    });
+
+
+    fetch("http://localhost:3000/api/usuario", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: usuario.email,
+        nome: usuario.nome,
+        telefone: usuario.telefone,
+        foto: url
+      })
+    });
+
+  </script>
+</body>
+
+</html>

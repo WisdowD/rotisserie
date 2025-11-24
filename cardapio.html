@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rotisserie Israel - Cardápio Digital</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ====== CABEÇALHO ====== -->
+  <header class="header" role="banner">
+    <div class="header-content" style="max-width:1200px;margin:auto;padding:0 20px;">
+      <h1 class="logo">Rotisserie Israel</h1>
+      <img src="img/2.png">
+      <p class="tagline">Comida caseira com sabor de família</p>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a class="perfil-area" href="perfil.html">Perfil</a>
+    </nav>
+    </div>
+  </header>
+
+  <!-- ====== NAVBAR (filtros + carrinho) ====== -->
+  <nav class="navbar" role="navigation" aria-label="Navegação de categorias">
+    <div class="nav-container">
+      <div class="nav-buttons" role="list">
+        <button class="nav-btn active" data-category="todos" role="listitem">Todos</button>
+        <button class="nav-btn" data-category="carnes" role="listitem">Carnes</button>
+        <button class="nav-btn" data-category="massas" role="listitem">Massas</button>
+        <button class="nav-btn" data-category="acompanhamentos" role="listitem">Acompanhamentos</button>
+        <button class="nav-btn" data-category="sobremesas" role="listitem">Sobremesas</button>
+        <button class="nav-btn" data-category="bebidas" role="listitem">Bebidas</button>
+      </div>
+
+      <!-- botão do carrinho — usado pelo script -->
+      <button id="cart-btn" class="cart-btn-navbar" aria-label="Abrir carrinho">
+        🛒 <span id="cart-count" aria-live="polite">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== CONTEÚDO PRINCIPAL ====== -->
+  <main class="main-content" role="main">
+    <section class="menu-section" aria-labelledby="section-title" style="max-width:1200px;margin:auto;padding:20px;">
+      <h2 id="section-title">Todos os Produtos</h2>
+
+      <!-- GRID onde o script injeta os cards -->
+      <div id="menu-grid" class="menu-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- ====== MODAL DE DETALHE DO PRODUTO ====== -->
+  <div id="product-modal" class="product-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="product-content" role="document">
+      <img id="modal-image" src="" alt="Imagem do produto" />
+      <h3 id="modal-name">Nome do Produto</h3>
+      <p id="modal-description">Descrição do produto</p>
+      <p id="modal-price" class="modal-price">R$ 0,00</p>
+      <button id="modal-add-btn" class="btn-order" aria-label="Adicionar ao carrinho">Adicionar ao Carrinho</button>
+      <button id="close-product" class="btn-close" aria-label="Fechar detalhes do produto">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ====== MODAL DO CARRINHO ====== -->
+  <div id="cart-modal" class="cart-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cart-content" role="document">
+      <h2>Seu Carrinho</h2>
+      <div id="cart-items" class="cart-items"></div>
+      <p id="cart-total" class="cart-total">Total: R$ 0,00</p>
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button id="finalize-btn" class="btn-finalize">Finalizar Pedido</button>
+        <button id="close-cart" class="btn-close">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== RODAPÉ ====== -->
+  <footer class="footer" role="contentinfo">
+    <div style="max-width:1200px;margin:auto;padding:20px;">
+      <p>&copy; 2025 Rotisserie Israel - Todos os direitos reservados.</p>
+      <p>Desenvolvido por <strong>InovaTech Solutions</strong> - ETEC Heliópolis</p>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ======
+       - script.js: lógica principal do cardápio, carrinho e modal de produto
+       - admin usa script_admin.js (página separada)
+  ======================= -->
+  <script src="script.js"></script>
+</body>
+
+</html>

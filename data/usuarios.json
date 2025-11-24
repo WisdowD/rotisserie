@@ -1,0 +1,40 @@
+{
+  "diogololiveira22@outlook.com": {
+    "email": "diogololiveira22@outlook.com",
+    "nome": "Digo",
+    "senhaHash": "$2b$12$C7XKwZ9APCHsWGhPO0tAj.Zl5TGQLDMDpO9G8MlXGBzwLRl8HVABK",
+    "foto": "/img/peep-40(1).png",
+    "telefone": "(11)95494-7098",
+    "pedidos": [
+      {
+        "id": "P-1763990516257",
+        "data": "24/11/2025",
+        "itens": [
+          {
+            "nome": "Bifé à Milanesa",
+            "preco": 31.2,
+            "qtd": 1
+          },
+          {
+            "nome": "Dobradinha - 600g",
+            "preco": 45,
+            "qtd": 2
+          }
+        ],
+        "total": 121.2
+      },
+      {
+        "id": "P-1763990473561",
+        "data": "24/11/2025",
+        "itens": [
+          {
+            "nome": "Dobradinha - 600g",
+            "preco": 45,
+            "qtd": 2
+          }
+        ],
+        "total": 90
+      }
+    ]
+  }
+}

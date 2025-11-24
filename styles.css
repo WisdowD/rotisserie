@@ -1,0 +1,642 @@
+/*
+ * 🌟 CSS TOTALMENTE RESPONSIVO
+ * Inclui ajustes no header e Media Queries para telas pequenas
+ */
+
+/* ---------- RESET E BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #d8cabb;
+  color: #2c2c2c;
+  overflow-x: hidden;
+  /* Garante que não haverá barra de rolagem horizontal */
+}
+
+/* ---------- CABEÇALHO (AJUSTADO PARA RESPONSIVIDADE) ---------- */
+.header {
+  background: linear-gradient(135deg, #497157, #2e5a3d);
+  color: #d8cabb;
+  text-align: center;
+  padding: 25px 10px;
+  position: relative;
+  /* Para posicionar a imagem */
+}
+
+.header img {
+  /* Margens ajustadas para evitar o overflow-x */
+  height: 80px;
+  width: 80px;
+  background-color: #d8cabb;
+  border-radius: 50%;
+  position: absolute;
+  /* Posição fixa no cabeçalho */
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-left: 100px;
+  /* Cria espaço para a logo ao lado */
+}
+
+.tagline {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #d8cabb;
+  margin-left: 100px;
+  /* Cria espaço para a logo ao lado */
+}
+
+
+/* ---------- NAV DE LINKS PRINCIPAIS (Início | Perfil) ---------- */
+header .nav {
+  /* Fundo para criar uma separação visual */
+  background: #2e5a3d;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .nav a {
+  color: #fff8ee;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 15px;
+  margin: 0 8px;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+header .nav a:hover {
+  background: #ff8f63;
+  color: #2e5a3d;
+}
+
+@media (max-width: 650px) {
+  header .nav a {
+    padding: 6px 10px;
+    margin: 0 4px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background: #d8cabb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-top: 3px solid #497157;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 25px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav-btn {
+  border: none;
+  background: #d8cabb;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+  background: #497157;
+  color: #d8cabb;
+}
+
+/* ---------- CARRINHO NA NAVBAR ---------- */
+.cart-btn-navbar {
+  background: #497157;
+  color: #d8cabb;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.cart-btn-navbar:hover {
+  background: #ff8f63;
+}
+
+.cart-btn-navbar span {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  background: #ff8f63;
+  color: #d8cabb;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* ---------- SEÇÃO DE PRODUTOS ---------- */
+.menu-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #497157;
+  margin: 20px auto 25px;
+  display: inline-block;
+  border-bottom: 3px solid #497157;
+  padding-bottom: 6px;
+}
+
+/* ---------- GRID DE PRODUTOS ---------- */
+.menu-grid {
+  /* Mantém o grid responsivo com minmax */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.menu-card {
+  background: #fce9d6;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+  text-align: left;
+}
+
+.card-content h3 {
+  color: #1a472a;
+  font-size: 1.15rem;
+  margin-bottom: 5px;
+}
+
+.card-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.card-price {
+  color: #ff8f63;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ---------- BOTÃO “ADICIONAR” ---------- */
+.btn-order {
+  background: #d8cabb;
+  color: #497157;
+  border: 2px solid #497157;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-order:hover {
+  background: #497157;
+  color: #d8cabb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- MODAL DE DETALHE DO PRODUTO ---------- */
+.product-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
+}
+
+.product-content {
+  background: #d8cabb;
+  border-radius: 22px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.product-content img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 18px;
+}
+
+.product-content h3 {
+  color: #497157;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.product-content p {
+  color: #444;
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.modal-price {
+  font-weight: bold;
+  color: #ff8f63;
+  margin: 15px 0 25px;
+  font-size: 1.2rem;
+}
+
+.product-content .btn-order {
+  background: linear-gradient(135deg, #497157, #4d7159);
+  color: #d8cabb;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 22px;
+  width: 75%;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin: 0 auto;
+  display: block;
+}
+
+.product-content .btn-order:hover {
+  background: #ff8f63;
+  transform: scale(1.05);
+}
+
+.product-content .btn-close {
+  margin-top: 10px;
+  width: 65%;
+  background: #ccc;
+  color: #222;
+  font-weight: 500;
+}
+
+.product-content .btn-close:hover {
+  background: #bbb;
+}
+
+/* ---------- MODAL DO CARRINHO ---------- */
+.cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  z-index: 200;
+}
+
+.cart-content {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cart-content h2 {
+  color: #497157;
+  margin-bottom: 15px;
+}
+
+.cart-total {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #497157;
+}
+
+.btn-finalize,
+.btn-close {
+  width: 45%;
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-finalize {
+  background: #497157;
+  color: white;
+}
+
+.btn-finalize:hover {
+  background: #ff8f63;
+}
+
+.btn-close {
+  background: #ff8f63;
+  color: white;
+}
+
+.btn-close:hover {
+  background: #ff8f63;
+}
+
+/* ---------- RODAPÉ ---------- */
+.footer {
+  background: #497157;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+/* ---------- PÁGINA ADMIN ---------- */
+.admin-section,
+.admin-list {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section h2,
+.admin-list h2 {
+  color: #497157;
+  margin-bottom: 15px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+  border-color: #497157;
+}
+
+.admin-list .menu-card {
+  cursor: default;
+}
+
+.admin-list .delete-btn {
+  background: #ff8f63;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 5px;
+}
+
+.admin-list .delete-btn:hover {
+  background: #ff8f63;
+}
+
+/*
+ * 📱 MEDIA QUERIES PARA RESPONSIVIDADE
+ * Adapta o layout para diferentes tamanhos de tela.
+ */
+
+/* Estilos para telas menores que 650px (Smartphones) */
+@media (max-width: 650px) {
+
+  /* ---------- CABEÇALHO ---------- */
+  .header {
+    padding: 15px 10px;
+    height: auto;
+  }
+
+  .header img {
+    position: static;
+    /* Remove o posicionamento absoluto */
+    display: block;
+    margin: 0 auto 10px;
+    /* Centraliza a imagem no topo */
+    height: 70px;
+    width: 70px;
+    transform: none;
+    float: none;
+  }
+
+  .logo,
+  .tagline {
+    margin-left: 0;
+    /* Centraliza o texto */
+    text-align: center;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .nav-container {
+    flex-direction: column;
+    /* Empilha os itens verticalmente */
+    padding: 10px;
+  }
+
+  .nav-buttons {
+    order: 2;
+    /* Move os botões para baixo */
+    margin-top: 10px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .nav-btn {
+    flex-grow: 1;
+    /* Permite que os botões se expandam um pouco mais */
+    min-width: 40%;
+    padding: 6px 15px;
+    font-size: 0.9rem;
+  }
+
+  .cart-btn-navbar {
+    order: 1;
+    /* Move o carrinho para cima */
+    margin-bottom: 10px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .cart-btn-navbar span {
+    right: 5px;
+    padding: 1px 5px;
+    font-size: 0.7rem;
+  }
+
+  /* ---------- SEÇÃO DE PRODUTOS ---------- */
+  .menu-grid {
+    padding: 0 15px;
+    /* Mais preenchimento nas laterais */
+  }
+
+  /* Faz o card ocupar quase a largura total da tela em telas bem pequenas */
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #section-title {
+    font-size: 1.5rem;
+    margin: 15px auto 20px;
+  }
+
+  /* ---------- MODAIS ---------- */
+  .product-content,
+  .cart-content {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .product-content img {
+    height: 180px;
+  }
+
+  .product-content .btn-order {
+    width: 90%;
+  }
+
+  .product-content .btn-close {
+    width: 80%;
+  }
+
+  .btn-finalize,
+  .btn-close {
+    width: 100%;
+    /* Botões do carrinho mais largos e empilhados */
+    margin: 5px 0;
+    display: block;
+  }
+
+  /* ---------- ADMIN ---------- */
+  .admin-section,
+  .admin-list {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  /* ---------- RODAPÉ ---------- */
+  .footer {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Estilos para telas grandes (tablets e monitores maiores, a partir de 1200px) */
+@media (min-width: 1200px) {
+  .menu-grid {
+    gap: 30px;
+  }
+}

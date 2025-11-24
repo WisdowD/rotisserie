@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotisserie Israel — Sabor e Tradição</title>
+
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#497157">
+
+  <link rel="icon" href="img/2.png">
+</head>
+
+<body>
+
+  <!-- ========================== HEADER ========================== -->
+  <header class="header">
+    <div class="inner">
+      <div class="brand">
+        <img src="img/2.png" alt="Logo Rotisserie Israel">
+        <div>
+          <h1>Rotisserie Israel</h1>
+          <p>Comida caseira com sabor de família</p>
+        </div>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">☰</button>
+
+      <nav class="nav" id="main-nav">
+        <a href="index.html">Início</a>
+        <a href="cardapio.html">Cardápio</a>
+        <a class="perfil-area" href="perfil.html">Perfil</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ========================== HERO ========================== -->
+  <section class="hero container">
+
+    <div class=" hero-left">
+
+      <h1 class="hero-title">
+        Sabor autêntico,
+        <span class="laranja">tradição e carinho</span>
+      </h1>
+
+      <p class="hero-sub">
+        Pratos caseiros preparados com amor, tradição e qualidade.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="cardapio.html" class="btn-primary">Ver cardápio completo</a>
+        <a href="#destaques" class="btn-ghost">Promoções</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="principal-card">
+        <img src="img/arroz.jpg" class="principal-img">
+
+        <div class="principal-info">
+          <h3>Arroz branco</h3>
+          <p>Arroz branco soltinho, preparado com alho e cebola dourados. Leve e saboroso, ideal para acompanhar
+            qualquer prato principal.</p>
+          <strong class="price">R$ 8,50
+
+          </strong>
+        </div>
+
+        <span class="badge-floating">Mais Pedido</span>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================== DESTAQUES ========================== -->
+  <section id="destaques" class="destaques container">
+
+    <h2 class="section-title">Destaques do Dia</h2>
+
+    <div class="destaques-grid">
+      <div class="dest-card">
+        <img src="img/bombomdemorango.jpg" class="dest-img">
+        <div class="dest-body">
+          <h3>Bombom de Morango
+          </h3>
+          <p>Morango fresco envolto em brigadeiro branco e coberto por chocolate ao leite de alta qualidade. Doce,
+            elegante e delicioso.
+          </p>
+          <span class="price">R$ 22,50
+          </span>
+        </div>
+      </div>
+
+      <div class="dest-card">
+        <img src="img/guarana_lata.webp" class="dest-img">
+        <div class="dest-body">
+          <h3>Guaraná Antarctica Lata 350ml
+          </h3>
+          <p>Guaraná Antarctica tradicional, o sabor brasileiro que não pode faltar.
+          </p>
+          <span class="price">R$ 5,00
+          </span>
+        </div>
+      </div>
+
+      <div class="dest-card">
+        <img src="img/brigadeiro.jpg" class="dest-img">
+        <div class="dest-body">
+          <h3>Brigadeiro Tradicional
+          </h3>
+          <p>Clássico brigadeiro de chocolate com granulado, feito com leite condensado de verdade.
+          </p>
+          <span class="price">R$ 4,00
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================== FOOTER =========================== -->
+  <footer class="footer">
+    <p>Desenvolvido por <a href="https://curupacu.github.io/novatecc/" target="_blank">NovaTec</a></p>
+  </footer>
+
+  <script>
+
+    const navToggle = document.getElementById('nav-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    navToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('is-open');
+    });
+    const perfilArea = document.getElementById("perfil-area");
+    const dados = localStorage.getItem("usuario");
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("./service-worker.js")
+        .then(() => console.log("Service Worker registrado com sucesso"))
+        .catch((err) => console.error("Erro ao registrar SW:", err));
+    }
+
+    if (dados) {
+      const usuario = JSON.parse(dados);
+    }
+  </script>
+</body>
+
+</html>
