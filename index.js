@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.use(express.static(path.join(__dirname)));
+
 app.get('/service-worker.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'service-worker.js'));
 });
@@ -25,12 +27,10 @@ app.get('/manifest.json', (req, res) => {
 
 app.use(bodyParser.json());
 
-// Servir arquivos estáticos da pasta /public
-app.use(express.static(path.join(__dirname)));
-
 // Rotas de API
 app.use("/api", usuarioRoutes);
 
 export default app;
+
 
 
